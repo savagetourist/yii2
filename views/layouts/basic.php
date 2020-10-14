@@ -9,14 +9,15 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= $this->title ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="container">
     <?php $this->beginBody() ?>
     <div class="wrap">
         <div class="container">
@@ -34,7 +35,11 @@ AppAsset::register($this);
         </div>
         <?= $content?>
     </div>   
-
+    <?php 
+    if (isset ($this->blocks['Block1'])):
+        echo $this->blocks['Block1'];
+    endif;
+    ?>
     <?php $this->endBody() ?>
 </body>
 </html>
