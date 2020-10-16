@@ -16,11 +16,22 @@ $config = [
     'components' => [
         'urlManager' => [
             'showScriptName' => false,
-            'enablePrettyUrl' => true
-                    ],  
+            'enablePrettyUrl' => true,
+            // 'suffix' => '.html',
+            'rules' => [
+                [
+                    'pattern' => '',
+                    'route' => 'site/index',
+                    'suffix' => '',
+                ],
+                '<action:(about|contact|login)>' => 'site/<action>', // Перенаправление
+                // '<action:\w+>' => 'site/<action>' // Указываем любое название action регуляркой
+            ]
+        ],  
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'J70r4_0lF7HJq2KTPgPkofAPrNTnvYB0',
+            'baseURL' => ''
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
